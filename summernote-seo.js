@@ -122,7 +122,7 @@
                                     $('.note-resizebar').append('<div class="summernote-seoAlert '+options.seo.successClass+'" style="position:absolute;bottom:0;left:2px;">'+lang.seo.descriptionNotification+'</div>');
                                     setTimeout(function(){$('.summernote-seoAlert').remove();},options.seo.notificationTime);
                                 }
-                            }else if(value='Extract Keywords'){
+                            }else if(value=='Extract Keywords'){
                                 var text=getKeywords($(options.seo.element).text());
                                 if(options.seo.keywordsElementType=='input'){
                                     if(options.seo.action=='replace'){
