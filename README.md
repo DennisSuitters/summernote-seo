@@ -35,16 +35,16 @@ $('.summernote').summernote({
         ['help',['help']]
     ],
     seo:{
-            element:'.summernote', // Element ID or Class used to Initialise Summernote
-            notificationTime:2400, // Time to display Notifications
-            keywordsElement:'#seoKeywords', // ID or Class of the Target Element to place content.
-            keywordsElementType:'input', // input|html
-            captionElement:'#seoCaption', // ID or Class of the Target Element to place content.
-            captionElementType:'input', // input|html
-            descriptionElement:'#seoDescription', // ID or Class of the Target Element to place content.
-            descriptionElementType:'input', // input|html
-            triggerInput:true, // Set this to True if like me you use AJAX to update single input fields
-            action:'replace', // replace|append
+            el:'.summernote', // Element ID or Class used to Initialise Summernote.
+            notTime:2400, // Time to display Notifications.
+            keyEl:'#seoKeywords', // ID or Class of the Target Element to place Keywords.
+            keyElType:'input', // input|html
+            capEl:'#seoCaption', // ID or Class of the Target Element to place Caption.
+            capElType:'input', // input|html
+            desEl:'#seoDescription', // ID or Class of the Target Element to place Description.
+            desElType:'input', // input|html
+            triggerInput:true, // Set this to True if like me you use AJAX to update single fields
+            action:'replace', // replace|append Replace or Append Content.
             successClass:'alert alert-success',
             errorClass:'alert alert-danger',
             icon:'<i class="note-icon">[Your Icon]</i> <span class="caret"></span>',
