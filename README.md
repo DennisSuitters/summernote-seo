@@ -3,6 +3,9 @@ A plugin for the [Summernote](https://github.com/summernote/summernote/) WYSIWYG
 
 summernote-seo Extracts Keywords, Captions (Highlighted), and Descriptions (Highlighted) from the Editor Text, then places them in the chosen Element, either an Input Field, or HTML Area.
 
+#### Demo
+[summernote-seo Demo](http://studiojunkyard.github.io/summernote-seo/)
+
 ### Installation
 
 #### 1. Include JS
