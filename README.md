@@ -44,6 +44,7 @@ $('.summernote').summernote({
         action:'replace', // replace|append Replace or Append Content.
         successClass:'alert alert-success',
         errorClass:'alert alert-danger',
+        autoClose:false, // Set to True to Auto Close Notifications
         icon:'<i class="note-icon">[Your Icon]</i> <span class="caret"></span>',
     }
 });
