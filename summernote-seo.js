@@ -12,10 +12,13 @@
       seo:{
         tooltip:'SEO',
         keyNot:'Keywords Extracted, you should review them!!!',
+        keyClipboard:'Keywords Extracted and placed into your Clipboard, paste them where you need them!!!',
         keyNotError:'Something went wrong!!!',
         capNot:'Caption has been Copied!!!',
+        capClipboard:'Caption Extracted and placed into your Clipboard, paste it where you need it!!!',
         capNotError:'You haven\'t Selected Any Text for the Caption!!!',
         desNot:'Description has been Copied!!!',
+        desClipboard:'Description Extracted and placed into your Clipboard, paste it where you need it!!!',
         desNotError:'You haven\'t Selected Any Text for the Description!!!',
       }
     }
@@ -31,6 +34,7 @@
       action:'replace', // replace|append Replace or Append Content.
       successClass:'alert alert-success',
       errorClass:'alert alert-danger',
+      autoClose:false, // Set to True to Auto Close Notifications
       icon:'<i class="note-icon"><svg xmlns="http://www.w3.org/2000/svg" id="libre-seo" viewBox="0 0 14 14" width="14" height="14"><path d="m 5.900978,8.5734763 c 0.57772,0 1.122935,0.12568 1.606781,0.34835 -0.377331,-0.42276 -0.96108,-0.6955 -1.618199,-0.6955 -0.666351,0 -1.257265,0.28066 -1.633576,0.71365 0.493486,-0.23377 1.052332,-0.3665 1.644994,-0.3665 z m 1.654664,-5.33156 c -0.899973,-0.89998 -2.353986,-0.89272 -3.254134,0.007 -0.899973,0.89992 -0.906148,2.35737 -0.0061,3.25714 l 1.6258,1.61694 1.629325,-1.62956 c 0.900031,-0.90006 0.905012,-2.35177 0.0052,-3.2517101 z m -1.62845,3.00577 c -0.765672,0 -1.386324,-0.62074 -1.386324,-1.38623 0,-0.7658201 0.620652,-1.38647 1.386324,-1.38647 0.765817,0 1.386498,0.62079 1.386498,1.38647 0,0.7653799 -0.620506,1.38623 -1.386498,1.38623 z m 3.482804,-3.80628 c -1.92114,-1.92163005 -5.047381,-1.92163005 -6.968813,0 -1.921577,1.9211399 -1.921577,5.0475299 0,6.96881 1.855519,1.8554897 4.834556,1.9186397 6.767084,0.19043 l 0.390671,0.39082 c -0.09728,0.2489997 -0.04628,0.5424197 0.154807,0.7435297 l 2.061471,2.06145 c 0.270991,0.27116 0.710564,0.27116 0.98141,0 0.271165,-0.27085 0.271165,-0.71031 0,-0.98159 L 10.735329,9.7538263 c -0.201262,-0.20141 -0.494797,-0.25238 -0.743827,-0.15496 l -0.39067,-0.39081 c 1.728528,-1.93241 1.6648,-4.91145 -0.190836,-6.76665 z m -6.379938,6.38008 c -1.596673,-1.59649 -1.596673,-4.19476 0,-5.7914401 1.596528,-1.59667 4.19471,-1.59667 5.791354,0 1.596674,1.59668 1.596674,4.1949201 0,5.7914401 -1.596644,1.5964997 -4.194826,1.5964997 -5.791354,0 z"/></svg></i> &nbsp;<span class="caret"></span>',
       menu:[
         'Extract Keywords',
@@ -70,81 +74,105 @@
                   var text=$(options.seo.el).summernote('createRange');
                   text.toString();
                   if(text==''){
-                    $('.note-resizebar').append('<div class="summernote-seoAlert '+options.seo.errorClass+'" style="position:absolute;bottom:0;left:2px;">'+lang.seo.capNotError+'</div>');
-                    setTimeout(function(){$('.summernote-seoAlert').remove();},options.seo.notTime);
+                    var seoNotification='<div class="summernote-seoAlert '+options.seo.errorClass+'" style="position:absolute;top:'+event.pageX+';left:'+event.pageY+';">'+lang.seo.capNotError+(options.seo.autoClose?'':'&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>')+'</div>';
                   }else{
-                    if($(options.seo.capEl).is('input')){
-                      if(options.seo.action=='replace'){
-                        $(options.seo.capEl).val(text);
+                    if($(options.seo.keyEl).length){
+                      if($(options.seo.capEl).is('input,textarea')){
+                        if(options.seo.action=='replace'){
+                          $(options.seo.capEl).val(text);
+                        }else{
+                          var preText=$(options.seo.capEl).val();
+                          if(preText!='')preText+=', ';
+                          $(options.seo.capEl).val(preText+text);
+                        }
+                        if(options.seo.triggerInput==true)$(options.seo.capEl).trigger("change");
                       }else{
-                        var preText=$(options.seo.capEl).val();
-                        if(preText!='')preText+=', ';
-                        $(options.seo.capEl).val(preText+text);
+                        if(options.seo.action=='replace'){
+                          $(options.seo.capEl).text(text);
+                        }else{
+                          var preText=$(options.seo.capEl).html();
+                          $(options.seo.capEl).text(preText+text);
+                        }
                       }
-                      if(options.seo.triggerInput==true)$(options.seo.capEl).trigger("change");
+                      var seoNotification='<div class="summernote-seoAlert '+options.seo.successClass+'" style="position:absolute;top:'+event.pageX+';left:'+event.pageY+';">'+lang.seo.capNot+(options.seo.autoClose?'':'&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>')+'</div>';
                     }else{
-                      if(options.seo.action=='replace'){
-                        $(options.seo.capEl).text(text);
-                      }else{
-                        var preText=$(options.seo.capEl).html();
-                        $(options.seo.capEl).text(preText+text);
-                      }
+                      var $seoTempEl=$('<input>');
+                      $("body").append($seoTempEl);
+                      $seoTempEl.val(text).select();
+                      document.execCommand("copy");
+                      $seoTempEl.remove();
+                      var seoNotification='<div class="summernote-seoAlert '+options.seo.successClass+'" style="position:absolute;top:'+event.pageX+';left:'+event.pageY+'">'+lang.seo.capClipboard+(options.seo.autoClose?'':'&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>')+'</div>';
                     }
-                    $('.note-resizebar').append('<div class="summernote-seoAlert '+options.seo.successClass+'" style="position:absolute;bottom:0;left:2px;">'+lang.seo.capNot+'</div>');
-                    setTimeout(function(){$('.summernote-seoAlert').remove();},options.seo.notTime);
                   }
                 break;
                 case'Copy Description':
                   var text=$(options.seo.el).summernote('createRange');
                   text.toString();
                   if(text==''){
-                    $('.note-resizebar').append('<div class="summernote-seoAlert '+options.seo.errorClass+'" style="position:absolute;bottom:0;left:2px;">'+lang.seo.desNotError+'</div>');
-                    setTimeout(function(){$('.summernote-seoAlert').remove();},options.seo.notTime);
+                    var seoNotification='<div class="summernote-seoAlert '+options.seo.errorClass+'" style="position:absolute;top:'+event.pageX+';left:'+event.pageY+';">'+lang.seo.desNotError+(options.seo.autoClose?'':'&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>')+'</div>';
                   }else{
-                    if($(options.seo.desEl).is('input')){
-                      if(options.seo.action=='replace'){
-                        $(options.seo.desEl).val(text);
+                    if($(options.seo.desEl).length){
+                      if($(options.seo.desEl).is('input')){
+                        if(options.seo.action=='replace'){
+                          $(options.seo.desEl).val(text);
+                        }else{
+                          var preText=$(options.seo.desEl).val();
+                          if(preText!='')preText+=', ';
+                          $(options.seo.desEl).val(preText+text);
+                        }
+                        if(options.seo.triggerInput==true)$(options.seo.desEl).trigger("change");
                       }else{
-                        var preText=$(options.seo.desEl).val();
-                        if(preText!='')preText+=', ';
-                        $(options.seo.desEl).val(preText+text);
+                        if(options.seo.action=='replace'){
+                          $(options.seo.desEl).text(text);
+                        }else{
+                          var preText=$(options.seo.desEl).text();
+                          $(options.seo.desEl).text(preText+text);
+                        }
                       }
-                      if(options.seo.triggerInput==true)$(options.seo.desEl).trigger("change");
+                      var seoNotification='<div class="summernote-seoAlert '+options.seo.successClass+'" style="position:absolute;top:'+event.pageX+';left:'+event.pageY+'">'+lang.seo.desNot+(options.seo.autoClose?'':'&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>')+'</div>';
                     }else{
-                      if(options.seo.action=='replace'){
-                        $(options.seo.desEl).text(text);
-                      }else{
-                        var preText=$(options.seo.desEl).text();
-                        $(options.seo.desEl).text(preText+text);
-                      }
+                      var $seoTempEl=$('<input>');
+                      $("body").append($seoTempEl);
+                      $seoTempEl.val(text).select();
+                      document.execCommand("copy");
+                      $seoTempEl.remove();
+                      var seoNotification='<div class="summernote-seoAlert '+options.seo.successClass+'" style="position:absolute;top:'+event.pageX+';left:'+event.pageY+'">'+lang.seo.desClipboard+(options.seo.autoClose?'':'&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>')+'</div>';
                     }
-                    $('.note-resizebar').append('<div class="summernote-seoAlert '+options.seo.successClass+'" style="position:absolute;bottom:0;left:2px;">'+lang.seo.desNot+'</div>');
-                    setTimeout(function(){$('.summernote-seoAlert').remove();},options.seo.notTime);
                   }
                 break;
                 case'Extract Keywords':
                   var text=getKeywords($(options.seo.el).text());
-                  if($(options.seo.keyEl).is('input,textarea')){
-                    if(options.seo.action=='replace'){
-                      $(options.seo.keyEl).val(text);
+                  if($(options.seo.keyEl).length){
+                    if($(options.seo.keyEl).is('input,textarea')){
+                      if(options.seo.action=='replace'){
+                        $(options.seo.keyEl).val(text);
+                      }else{
+                        var preText=$(options.seo.keyEl).val();
+                        if(preText!='')preText+=',';
+                        $(options.seo.keyEl).val(preText+','+text);
+                      }
+                      if(options.seo.triggerInput==true)$(options.seo.keyEl).trigger("change");
                     }else{
-                      var preText=$(options.seo.keyEl).val();
-                      if(preText!='')preText+=',';
-                      $(options.seo.keyEl).val(preText+','+text);
+                      if(options.seo.action=='replace'){
+                        $(options.seo.keyEl).text(text);
+                      }else{
+                        var preText=$(options.seo.keyEl).html();
+                        $(options.seo.keyEl).text(preText+','+text);
+                      }
                     }
-                    if(options.seo.triggerInput==true)$(options.seo.keyEl).trigger("change");
+                    var seoNotification='<div class="summernote-seoAlert '+options.seo.successClass+'" style="position:absolute;top:'+event.pageX+';left:'+event.pageY+';">'+lang.seo.keyNot+(options.seo.autoClose?'':'&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>')+'</div>'
                   }else{
-                    if(options.seo.action=='replace'){
-                      $(options.seo.keyEl).text(text);
-                    }else{
-                      var preText=$(options.seo.keyEl).html();
-                      $(options.seo.keyEl).text(preText+','+text);
-                    }
+                    var $seoTempEl=$('<input>');
+                    $("body").append($seoTempEl);
+                    $seoTempEl.val(text).select();
+                    document.execCommand("copy");
+                    $seoTempEl.remove();
+                    var seoNotification='<div class="summernote-seoAlert '+options.seo.successClass+'" style="position:absolute;top:'+event.pageX+';left:'+event.pageY+'">'+lang.seo.keyClipboard+(options.seo.autoClose?'':'&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>')+'</div>';
                   }
-                  $('.note-resizebar').append('<div class="summernote-seoAlert '+options.seo.successClass+'" style="position:absolute;bottom:0;left:2px;">'+lang.seo.keyNot+'</div>');
-                  setTimeout(function(){$('.summernote-seoAlert').remove();},options.seo.notTime);
                 break;
               }
+              $('.note-resizebar').append(seoNotification);
+              if(options.seo.autoClose)setTimeout(function(){$('.summernote-seoAlert').remove();},options.seo.notTime);
             }
           })
         ]);
