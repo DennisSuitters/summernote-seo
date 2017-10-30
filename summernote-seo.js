@@ -1,3 +1,4 @@
+/* https://github.com/DiemenDesign/summernote-seo */
 (function(factory){
   if(typeof define==='function'&&define.amd){
     define(['jquery'],factory);
