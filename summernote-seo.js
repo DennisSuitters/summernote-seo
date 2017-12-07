@@ -1,179 +1,183 @@
 /* https://github.com/DiemenDesign/summernote-seo */
-(function(factory){
-  if(typeof define==='function'&&define.amd){
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
     define(['jquery'],factory);
-  }else if(typeof module==='object'&&module.exports){
-    module.exports=factory(require('jquery'));
-  }else{
+  } else if (typeof module === 'object' && module.exports) {
+    module.exports = factory(require('jquery'));
+  } else {
     factory(window.jQuery);
   }
-}(function($){
-  $.extend(true,$.summernote.lang,{
-    'en-US':{
-      seo:{
-        tooltip:'SEO',
-        keyNot:'Keywords Extracted, you should review them!!!',
-        keyClipboard:'Keywords Extracted and placed into your Clipboard, paste them where you need them!!!',
-        keyNotError:'Something went wrong!!!',
-        capNot:'Caption has been Copied!!!',
-        capClipboard:'Caption Extracted and placed into your Clipboard, paste it where you need it!!!',
-        capNotError:'You haven\'t Selected Any Text for the Caption!!!',
-        desNot:'Description has been Copied!!!',
-        desClipboard:'Description Extracted and placed into your Clipboard, paste it where you need it!!!',
-        desNotError:'You haven\'t Selected Any Text for the Description!!!',
+}(function ($) {
+  $.extend(true,$.summernote.lang, {
+    'en-US': {
+      seo: {
+        tooltip: 'SEO',
+        keyNot: 'Keywords Extracted, you should review them!!!',
+        keyClipboard:' Keywords Extracted and placed into your Clipboard, paste them where you need them!!!',
+        keyNotError: 'Something went wrong!!!',
+        capNot: 'Caption has been Copied!!!',
+        capClipboard: 'Caption Extracted and placed into your Clipboard, paste it where you need it!!!',
+        capNotError: 'You haven\'t Selected Any Text for the Caption!!!',
+        desNot: 'Description has been Copied!!!',
+        desClipboard: 'Description Extracted and placed into your Clipboard, paste it where you need it!!!',
+        desNotError: 'You haven\'t Selected Any Text for the Description!!!',
       }
     }
   });
-  $.extend($.summernote.options,{
-    seo:{
-      el:'#summernote', // Element ID or Class used to Initialise Summernote.
-      notTime:2400, // Time to display Notifications.
-      keyEl:'#seoKeywords', // ID or Class of the Target Element to place Keywords.
-      capEl:'#seoCaption', // ID or Class of the Target Element to place Caption.
-      desEl:'#seoDescription', // ID or Class of the Target Element to place Description.
-      triggerInput:true, // Set this to True if like me you use AJAX to update single fields
-      action:'replace', // replace|append Replace or Append Content.
-      successClass:'alert alert-success',
-      errorClass:'alert alert-danger',
-      autoClose:false, // Set to True to Auto Close Notifications
-      icon:'<i class="note-icon"><svg xmlns="http://www.w3.org/2000/svg" id="libre-seo" viewBox="0 0 14 14" width="14" height="14"><path d="m 5.900978,8.5734763 c 0.57772,0 1.122935,0.12568 1.606781,0.34835 -0.377331,-0.42276 -0.96108,-0.6955 -1.618199,-0.6955 -0.666351,0 -1.257265,0.28066 -1.633576,0.71365 0.493486,-0.23377 1.052332,-0.3665 1.644994,-0.3665 z m 1.654664,-5.33156 c -0.899973,-0.89998 -2.353986,-0.89272 -3.254134,0.007 -0.899973,0.89992 -0.906148,2.35737 -0.0061,3.25714 l 1.6258,1.61694 1.629325,-1.62956 c 0.900031,-0.90006 0.905012,-2.35177 0.0052,-3.2517101 z m -1.62845,3.00577 c -0.765672,0 -1.386324,-0.62074 -1.386324,-1.38623 0,-0.7658201 0.620652,-1.38647 1.386324,-1.38647 0.765817,0 1.386498,0.62079 1.386498,1.38647 0,0.7653799 -0.620506,1.38623 -1.386498,1.38623 z m 3.482804,-3.80628 c -1.92114,-1.92163005 -5.047381,-1.92163005 -6.968813,0 -1.921577,1.9211399 -1.921577,5.0475299 0,6.96881 1.855519,1.8554897 4.834556,1.9186397 6.767084,0.19043 l 0.390671,0.39082 c -0.09728,0.2489997 -0.04628,0.5424197 0.154807,0.7435297 l 2.061471,2.06145 c 0.270991,0.27116 0.710564,0.27116 0.98141,0 0.271165,-0.27085 0.271165,-0.71031 0,-0.98159 L 10.735329,9.7538263 c -0.201262,-0.20141 -0.494797,-0.25238 -0.743827,-0.15496 l -0.39067,-0.39081 c 1.728528,-1.93241 1.6648,-4.91145 -0.190836,-6.76665 z m -6.379938,6.38008 c -1.596673,-1.59649 -1.596673,-4.19476 0,-5.7914401 1.596528,-1.59667 4.19471,-1.59667 5.791354,0 1.596674,1.59668 1.596674,4.1949201 0,5.7914401 -1.596644,1.5964997 -4.194826,1.5964997 -5.791354,0 z"/></svg></i> &nbsp;<span class="caret"></span>',
-      menu:[
+  $.extend($.summernote.options, {
+    seo: {
+      el: '#summernote', // Element ID or Class used to Initialise Summernote.
+      notTime: 2400, // Time to display Notifications.
+      keyEl: '#seoKeywords', // ID or Class of the Target Element to place Keywords.
+      capEl: '#seoCaption', // ID or Class of the Target Element to place Caption.
+      desEl: '#seoDescription', // ID or Class of the Target Element to place Description.
+      triggerInput: true, // Set this to True if like me you use AJAX to update single fields
+      action: 'replace', // replace|append Replace or Append Content.
+      successClass: 'alert alert-success',
+      errorClass: 'alert alert-danger',
+      autoClose: false, // Set to True to Auto Close Notifications
+      icon: '<i class="note-icon"><svg xmlns="http://www.w3.org/2000/svg" id="libre-seo" viewBox="0 0 14 14" width="14" height="14"><path d="m 5.900978,8.5734763 c 0.57772,0 1.122935,0.12568 1.606781,0.34835 -0.377331,-0.42276 -0.96108,-0.6955 -1.618199,-0.6955 -0.666351,0 -1.257265,0.28066 -1.633576,0.71365 0.493486,-0.23377 1.052332,-0.3665 1.644994,-0.3665 z m 1.654664,-5.33156 c -0.899973,-0.89998 -2.353986,-0.89272 -3.254134,0.007 -0.899973,0.89992 -0.906148,2.35737 -0.0061,3.25714 l 1.6258,1.61694 1.629325,-1.62956 c 0.900031,-0.90006 0.905012,-2.35177 0.0052,-3.2517101 z m -1.62845,3.00577 c -0.765672,0 -1.386324,-0.62074 -1.386324,-1.38623 0,-0.7658201 0.620652,-1.38647 1.386324,-1.38647 0.765817,0 1.386498,0.62079 1.386498,1.38647 0,0.7653799 -0.620506,1.38623 -1.386498,1.38623 z m 3.482804,-3.80628 c -1.92114,-1.92163005 -5.047381,-1.92163005 -6.968813,0 -1.921577,1.9211399 -1.921577,5.0475299 0,6.96881 1.855519,1.8554897 4.834556,1.9186397 6.767084,0.19043 l 0.390671,0.39082 c -0.09728,0.2489997 -0.04628,0.5424197 0.154807,0.7435297 l 2.061471,2.06145 c 0.270991,0.27116 0.710564,0.27116 0.98141,0 0.271165,-0.27085 0.271165,-0.71031 0,-0.98159 L 10.735329,9.7538263 c -0.201262,-0.20141 -0.494797,-0.25238 -0.743827,-0.15496 l -0.39067,-0.39081 c 1.728528,-1.93241 1.6648,-4.91145 -0.190836,-6.76665 z m -6.379938,6.38008 c -1.596673,-1.59649 -1.596673,-4.19476 0,-5.7914401 1.596528,-1.59667 4.19471,-1.59667 5.791354,0 1.596674,1.59668 1.596674,4.1949201 0,5.7914401 -1.596644,1.5964997 -4.194826,1.5964997 -5.791354,0 z"/></svg></i> &nbsp;<span class="caret"></span>',
+      menu: [
         'Extract Keywords',
         'Copy Caption',
         'Copy Description'
       ]
     }
   });
-  $.extend($.summernote.plugins,{
-    'seo':function(context){
-      var self=this;
-      var ui=$.summernote.ui;
-      var $note=context.layoutInfo.note;
-      var $editor=context.layoutInfo.editor;
-      var $editable=context.layoutInfo.editable;
-      var options=context.options;
-      var lang=options.langInfo;
-      context.memo('button.seo',function(){
-        var button=ui.buttonGroup([
+  $.extend($.summernote.plugins, {
+    'seo': function (context) {
+      var self      = this,
+          ui        = $.summernote.ui,
+          $note     = context.layoutInfo.note,
+          $editor   = context.layoutInfo.editor,
+          $editable = context.layoutInfo.editable,
+          options   = context.options,
+          lang      = options.langInfo;
+      context.memo('button.seo', function () {
+        var button = ui.buttonGroup([
           ui.button({
-            className:'dropdown-toggle',
-            contents:options.seo.icon,
-            tooltip:lang.seo.tooltip,
-            data:{
-              toggle:'dropdown'
+            className: 'dropdown-toggle',
+            contents: options.seo.icon,
+            tooltip: lang.seo.tooltip,
+            data: {
+              toggle: 'dropdown'
             }
           }),
           ui.dropdown({
-            className:'dropdown-template',
-            items:options.seo.menu,
-            click:function(event){
-              var $button=$(event.target);
-              var value=$button.data('value');
-              event.preventDefault();
-              switch(value){
-                case'Copy Caption':
-                  var text=$(options.seo.el).summernote('createRange');
+            className: 'dropdown-template',
+            items: options.seo.menu,
+            click: function (e) {
+              var $button = $(e.target);
+              var value   = $button.data('value');
+              e.preventDefault();
+              switch (value) {
+                case 'Copy Caption':
+                  var text = $(options.seo.el).summernote('createRange');
                   text.toString();
-                  if(text==''){
-                    var seoNotification='<div class="summernote-seoAlert '+options.seo.errorClass+'" style="position:absolute;top:'+event.pageX+';left:'+event.pageY+';">'+lang.seo.capNotError+(options.seo.autoClose?'':'&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>')+'</div>';
-                  }else{
-                    if($(options.seo.keyEl).length){
-                      if($(options.seo.capEl).is('input,textarea')){
-                        if(options.seo.action=='replace'){
+                  if (text=='') {
+                    var seoNotification = '<div class="summernote-seoAlert ' + options.seo.errorClass + '" style="position:absolute;top:' + e.pageX + ';left:' + e.pageY + ';">' + lang.seo.capNotError + (options.seo.autoClose ? '' : '&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>') + '</div>';
+                  } else {
+                    if ($(options.seo.keyEl).length) {
+                      if ($(options.seo.capEl).is('input,textarea')) {
+                        if (options.seo.action == 'replace') {
                           $(options.seo.capEl).val(text);
-                        }else{
-                          var preText=$(options.seo.capEl).val();
-                          if(preText!='')preText+=', ';
-                          $(options.seo.capEl).val(preText+text);
+                        } else {
+                          var preText = $(options.seo.capEl).val();
+                          if (preText != '') preText += ', ';
+                          $(options.seo.capEl).val(preText + text);
                         }
-                        if(options.seo.triggerInput==true)$(options.seo.capEl).trigger("change");
-                      }else{
-                        if(options.seo.action=='replace'){
+                        if (options.seo.triggerInput == true) $(options.seo.capEl).trigger("change");
+                      } else {
+                        if (options.seo.action == 'replace') {
                           $(options.seo.capEl).text(text);
-                        }else{
-                          var preText=$(options.seo.capEl).html();
-                          $(options.seo.capEl).text(preText+text);
+                        } else {
+                          var preText = $(options.seo.capEl).html();
+                          $(options.seo.capEl).text(preText + text);
                         }
                       }
-                      var seoNotification='<div class="summernote-seoAlert '+options.seo.successClass+'" style="position:absolute;top:'+event.pageX+';left:'+event.pageY+';">'+lang.seo.capNot+(options.seo.autoClose?'':'&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>')+'</div>';
-                    }else{
-                      var $seoTempEl=$('<input>');
+                      var seoNotification = '<div class="summernote-seoAlert ' + options.seo.successClass + '" style="position:absolute;top:' + e.pageX + ';left:' + e.pageY + ';">' + lang.seo.capNot + (options.seo.autoClose ? '' : '&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>') + '</div>';
+                    } else {
+                      var $seoTempEl = $('<input>');
                       $("body").append($seoTempEl);
                       $seoTempEl.val(text).select();
                       document.execCommand("copy");
                       $seoTempEl.remove();
-                      var seoNotification='<div class="summernote-seoAlert '+options.seo.successClass+'" style="position:absolute;top:'+event.pageX+';left:'+event.pageY+'">'+lang.seo.capClipboard+(options.seo.autoClose?'':'&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>')+'</div>';
+                      var seoNotification = '<div class="summernote-seoAlert ' + options.seo.successClass + '" style="position:absolute;top:' + e.pageX + ';left:' + e.pageY + '">' + lang.seo.capClipboard + (options.seo.autoClose ? '' : '&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>') + '</div>';
                     }
                   }
                 break;
-                case'Copy Description':
-                  var text=$(options.seo.el).summernote('createRange');
+                case 'Copy Description':
+                  var text = $(options.seo.el).summernote('createRange');
                   text.toString();
-                  if(text==''){
-                    var seoNotification='<div class="summernote-seoAlert '+options.seo.errorClass+'" style="position:absolute;top:'+event.pageX+';left:'+event.pageY+';">'+lang.seo.desNotError+(options.seo.autoClose?'':'&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>')+'</div>';
-                  }else{
-                    if($(options.seo.desEl).length){
-                      if($(options.seo.desEl).is('input')){
-                        if(options.seo.action=='replace'){
+                  if (text == '') {
+                    var seoNotification = '<div class="summernote-seoAlert ' + options.seo.errorClass + '" style="position:absolute;top:' + e.pageX + ';left:' + e.pageY + ';">' + lang.seo.desNotError + (options.seo.autoClose ? '' : '&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>') + '</div>';
+                  } else {
+                    if ($(options.seo.desEl).length) {
+                      if ($(options.seo.desEl).is('input')) {
+                        if (options.seo.action == 'replace') {
                           $(options.seo.desEl).val(text);
-                        }else{
-                          var preText=$(options.seo.desEl).val();
-                          if(preText!='')preText+=', ';
-                          $(options.seo.desEl).val(preText+text);
+                        } else {
+                          var preText = $(options.seo.desEl).val();
+                          if (preText != '') preText += ', ';
+                          $(options.seo.desEl).val(preText + text);
                         }
-                        if(options.seo.triggerInput==true)$(options.seo.desEl).trigger("change");
-                      }else{
-                        if(options.seo.action=='replace'){
+                        if (options.seo.triggerInput == true) $(options.seo.desEl).trigger("change");
+                      } else {
+                        if (options.seo.action=='replace') {
                           $(options.seo.desEl).text(text);
-                        }else{
-                          var preText=$(options.seo.desEl).text();
-                          $(options.seo.desEl).text(preText+text);
+                        } else {
+                          var preText = $(options.seo.desEl).text();
+                          $(options.seo.desEl).text(preText + text);
                         }
                       }
-                      var seoNotification='<div class="summernote-seoAlert '+options.seo.successClass+'" style="position:absolute;top:'+event.pageX+';left:'+event.pageY+'">'+lang.seo.desNot+(options.seo.autoClose?'':'&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>')+'</div>';
-                    }else{
-                      var $seoTempEl=$('<input>');
+                      var seoNotification = '<div class="summernote-seoAlert ' + options.seo.successClass + '" style="position:absolute;top:' + e.pageX + ';left:' + e.pageY + '">' + lang.seo.desNot + (options.seo.autoClose ? '' : '&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>') + '</div>';
+                    } else {
+                      var $seoTempEl = $('<input>');
                       $("body").append($seoTempEl);
                       $seoTempEl.val(text).select();
                       document.execCommand("copy");
                       $seoTempEl.remove();
-                      var seoNotification='<div class="summernote-seoAlert '+options.seo.successClass+'" style="position:absolute;top:'+event.pageX+';left:'+event.pageY+'">'+lang.seo.desClipboard+(options.seo.autoClose?'':'&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>')+'</div>';
+                      var seoNotification = '<div class="summernote-seoAlert ' + options.seo.successClass + '" style="position:absolute;top:' + e.pageX + ';left:' + e.pageY + '">' + lang.seo.desClipboard + (options.seo.autoClose ? '' : '&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>') + '</div>';
                     }
                   }
                 break;
-                case'Extract Keywords':
-                  var text=getKeywords($(options.seo.el).text());
-                  if($(options.seo.keyEl).length){
-                    if($(options.seo.keyEl).is('input,textarea')){
-                      if(options.seo.action=='replace'){
+                case 'Extract Keywords':
+                  var text = getKeywords($(options.seo.el).text());
+                  if ($(options.seo.keyEl).length) {
+                    if ($(options.seo.keyEl).is('input,textarea')) {
+                      if (options.seo.action == 'replace') {
                         $(options.seo.keyEl).val(text);
-                      }else{
-                        var preText=$(options.seo.keyEl).val();
-                        if(preText!='')preText+=',';
-                        $(options.seo.keyEl).val(preText+','+text);
+                      } else {
+                        var preText = $(options.seo.keyEl).val();
+                        if (preText != '') preText += ',';
+                        $(options.seo.keyEl).val(preText + ',' + text);
                       }
-                      if(options.seo.triggerInput==true)$(options.seo.keyEl).trigger("change");
-                    }else{
-                      if(options.seo.action=='replace'){
+                      if (options.seo.triggerInput == true) $(options.seo.keyEl).trigger("change");
+                    } else {
+                      if (options.seo.action == 'replace') {
                         $(options.seo.keyEl).text(text);
-                      }else{
-                        var preText=$(options.seo.keyEl).html();
-                        $(options.seo.keyEl).text(preText+','+text);
+                      } else {
+                        var preText = $(options.seo.keyEl).html();
+                        $(options.seo.keyEl).text(preText + ',' + text);
                       }
                     }
-                    var seoNotification='<div class="summernote-seoAlert '+options.seo.successClass+'" style="position:absolute;top:'+event.pageX+';left:'+event.pageY+';">'+lang.seo.keyNot+(options.seo.autoClose?'':'&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>')+'</div>'
-                  }else{
-                    var $seoTempEl=$('<input>');
+                    var seoNotification = '<div class="summernote-seoAlert ' + options.seo.successClass + '" style="position:absolute;top:' + e.pageX + ';left:' + e.pageY + ';">' + lang.seo.keyNot + (options.seo.autoClose ? '' : '&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>') + '</div>'
+                  } else {
+                    var $seoTempEl = $('<input>');
                     $("body").append($seoTempEl);
                     $seoTempEl.val(text).select();
                     document.execCommand("copy");
                     $seoTempEl.remove();
-                    var seoNotification='<div class="summernote-seoAlert '+options.seo.successClass+'" style="position:absolute;top:'+event.pageX+';left:'+event.pageY+'">'+lang.seo.keyClipboard+(options.seo.autoClose?'':'&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>')+'</div>';
+                    var seoNotification = '<div class="summernote-seoAlert ' + options.seo.successClass + '" style="position:absolute;top:' + e.pageX + ';left:' + e.pageY + '">' + lang.seo.keyClipboard + (options.seo.autoClose ? '' : '&nbsp;&nbsp;&nbsp;&nbsp;<a class="close" data-dismiss="alert" href="#" aria-hidden="true" title="Close Alert">&times;</a>') + '</div>';
                   }
                 break;
               }
               $('.note-resizebar').append(seoNotification);
-              if(options.seo.autoClose)setTimeout(function(){$('.summernote-seoAlert').remove();},options.seo.notTime);
+              if (options.seo.autoClose) {
+                setTimeout( function () {
+                  $('.summernote-seoAlert').remove();
+                },options.seo.notTime);
+              }
             }
           })
         ]);
@@ -213,117 +217,113 @@ var soundex={
     'Y': /[Yy\xdd\xfd\xff\u0176-\u0178\u0232\u0233\u02b8\u1e8e\u1e8f\u1e99\u1ef2-\u1ef9\u24b4\u24ce\u24e8\u33c9\uff39\uff59]/ig,
     'Z': /[Zz\u0179-\u017e\u01f1-\u01f3\u1dbb\u1e90-\u1e95\u2124\u2128\u24b5\u24cf\u24e9\u3390-\u3394\uff3a\uff5a]/ig},
   cache:{},
-  word:function(str,iscyr){
-    var l=str.length,
-        output='',
-        i=0,
-        iscyr=iscyr||true,
-        previous=-1,
-        power=6;
-    while(i<l){
-      var current=last=this.codes[str[i]];
-      for(var j=k=1;k<power+1;k++){
-        if(!str[i+k]||!current[str[i+k]])break;
-        current=current[str[i+k]];
-        if(current[0]){
-          last=current;
-          j=k+1;
+  word: function(str, iscyr) {
+    var l        = str.length,
+        output   = '',
+        i        = 0,
+        iscyr    = iscyr||true,
+        previous = -1,
+        power    = 6;
+    while (i < l) {
+      var current = last = this.codes[str[i]];
+      for (var j = k = 1; k < power + 1; k++) {
+        if (!str[i + k] || !current[str[i + k]]) break;
+        current = current[str[i + k]];
+        if (current[0]) {
+          last = current;
+          j = k + 1;
         }
       }
       var code;
-      if(i==0){
-        code=last[0][0];
-      }else if(!str[i+j]||this.codes[str[i+j]][0][0]!=0){
-        code=iscyr?(last.length>1?last[1][2]:last[0][2]):last[0][2];
-      }else{
-        code=iscyr?(last.length>1?last[1][1]:last[0][1]):last[0][1];
+      if (i == 0) {
+        code = last[0][0];
+      } else if (!str[i + j] || this.codes[str[i + j]][0][0] != 0) {
+        code = iscyr ? (last.length > 1 ? last[1][2] : last[0][2]) : last[0][2];
+      } else {
+        code = iscyr ? (last.length > 1 ? last[1][1] : last[0][1]) : last[0][1];
       }
-      if((code!=-1)&&(code!=previous))output+=code;
-      previous=code;
-      i+=j;
+      if ((code != -1) && (code != previous)) output += code;
+      previous = code;
+      i += j;
     }
-    if(output&&output.length<3)output+=(new Array(3-output.length+1)).join('0');
+    if (output && output.length < 3) output += (new Array(3 - output.length + 1)).join('0');
     return output;
   },
-  calc:function(str){
-    var str=str.toUpperCase(),
-        iscyr=false,
-        trans=str.match(/[А-Я]/g);
-    for(var letter in this.accented){
-      str.replace(this.accented[letter],letter);
+  calc: function (str) {
+    var str   = str.toUpperCase(),
+        iscyr = false,
+        trans = str.match(/[А-Я]/g);
+    for (var letter in this.accented) {
+      str.replace(this.accented[letter], letter);
     }
-    if(trans){
-      str=this.translit(str,trans);
-      iscyr=true;
+    if (trans) {
+      str = this.translit(str, trans);
+      iscyr = true;
     }
-    str=str.replace(/[^\s^A-Z]/g,'').replace(/\s{2,}/g,' ').replace(/^\s+|\s+$/g,'');
-    if(!str)return null;
-    var matches=str.split(' ');
-    for(var i=0,l=matches.length;i<l;i++){
-      var word=matches[i];
-      if(this.cache[word]){
-        matches[i]=this.cache[word];
-      }else{
-        matches[i]=this.cache[word]=this.word(word,iscyr);
+    str = str.replace(/[^\s^A-Z]/g, '').replace(/\s{2,}/g, ' ').replace(/^\s+|\s+$/g, '');
+    if (!str) return null;
+    var matches = str.split(' ');
+    for (var i = 0, l = matches.length;i < l; i++) {
+      var word = matches[i];
+      if (this.cache[word]) {
+        matches[i] = this.cache[word];
+      } else {
+        matches[i] = this.cache[word] = this.word(word,iscyr);
       }
     }
-    matches=matches.toString().substr(0,4);
+    matches = matches.toString().substr(0, 4);
     return matches;
   },
-  translit:function(str,matches){
-    for(var i=0,l=matches.length;i<l;i++){
-      var index=$.inArray(matches[i],this.ru);
-      str=str.replace(matches[i],this.en[index]);
+  translit: function (str,matches) {
+    for (var i = 0, l = matches.length; i < l; i++) {
+      var index = $.inArray(matches[i], this.ru);
+      str = str.replace(matches[i], this.en[index]);
     }
     return str;
   }
 };
-function getKeywords(sourceText){
-  var start=Date.now();
-	sourceText=sourceText.replace(/<style([\s\S]*?)\/style>/ig," ");
-	sourceText=sourceText.replace(/<script([\s\S]*?)\/script>/ig," ");
-	sourceText=sourceText.replace(/<\/?[a-z][a-z0-9]*[^<>]*>/ig," ");
-	sourceText=sourceText.replace(/&([\s\S]*?);/ig," ");
-	sourceText=sourceText.replace(/<!--([\s\S]*?)-->/ig," ");
-	sourceText=sourceText.replace(/[^a-zA-Zа-яА-Я\s]/g," ");
-	sourceText=sourceText.replace(/\s+/g,' ');
-	sourceText=sourceText.replace(/^\s+/,'');
-	sourceText=sourceText.replace(/\s+$/,'');
-	sourceText=sourceText.toLowerCase();
-	txt=sourceText.split(' ');
-	var wordsArray=[];
-	var finalArray=[];
-	for(key in txt){
-		if(txt[key].length>=5){
-			var SoundexNumber=soundex.calc(txt[key]);
-			if(typeof wordsArray[SoundexNumber]!="undefined"){
+function getKeywords (sourceText) {
+  var start = Date.now();
+	sourceText = sourceText.replace(/<style([\s\S]*?)\/style>/ig, " ");
+	sourceText = sourceText.replace(/<script([\s\S]*?)\/script>/ig, " ");
+	sourceText = sourceText.replace(/<\/?[a-z][a-z0-9]*[^<>]*>/ig, " ");
+	sourceText = sourceText.replace(/&([\s\S]*?);/ig, " ");
+	sourceText = sourceText.replace(/<!--([\s\S]*?)-->/ig, " ");
+	sourceText = sourceText.replace(/[^a-zA-Zа-яА-Я\s]/g, " ");
+	sourceText = sourceText.replace(/\s+/g, ' ');
+	sourceText = sourceText.replace(/^\s+/, '');
+	sourceText = sourceText.replace(/\s+$/, '');
+	sourceText = sourceText.toLowerCase();
+	var txt = sourceText.split(' ');
+	var wordsArray = [];
+	var finalArray = [];
+	for (key in txt) {
+		if (txt[key].length >= 5) {
+			var SoundexNumber = soundex.calc(txt[key]);
+			if (typeof wordsArray[SoundexNumber] != "undefined") {
 				wordsArray[SoundexNumber].count++;
-				if(wordsArray[SoundexNumber].string.indexOf(txt[key])==-1&&wordsArray[SoundexNumber].word!=txt[key]){
+				if (wordsArray[SoundexNumber].string.indexOf(txt[key]) == -1 && wordsArray[SoundexNumber].word != txt[key]) {
 					wordsArray[SoundexNumber].string.push(txt[key]);
 				}
-			}else{
-				wordsArray[SoundexNumber]={'word':txt[key],'count':1,'string':[]};
+			} else {
+				wordsArray[SoundexNumber] = {'word': txt[key], 'count': 1, 'string': []};
 			}
 		}
 	}
-	txt='';
-	for(key in wordsArray){
+	txt = '';
+	for (key in wordsArray) {
 		finalArray.push(wordsArray[key]);
 	}
-	finalArray.sort(function(obj1,obj2){
-		if(obj1.count==obj2.count){return 0;}
-		if(obj1.count>obj2.count){return -1;}else{return 1;}
+	finalArray.sort(function(obj1, obj2) {
+		if (obj1.count == obj2.count) {return 0;}
+		if (obj1.count > obj2.count) {return -1;} else {return 1;}
 	});
-	keywords='';
-	for(key in finalArray){
-		if(keywords!=''){keywords=keywords+',';}
-		if((keywords+finalArray[key].word).length>255){
-			break;
-		}else{
-			keywords=keywords+finalArray[key].word;
-		}
+	var keywords = '';
+	for (key in finalArray) {
+		if (keywords != '') keywords = keywords + ',';
+		if ((keywords + finalArray[key].word).length > 255) break; else keywords=keywords+finalArray[key].word;
 	}
-	keywords=keywords.replace(/,+$/,'');
-  var stop=Date.now();
+	keywords = keywords.replace(/,+$/, '');
+  var stop = Date.now();
 	return keywords;
 }
